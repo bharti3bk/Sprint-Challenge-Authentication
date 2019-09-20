@@ -1,5 +1,5 @@
 const request = require("supertest");
-const server = require("../api/server.js");   
+const server = require("../api/server.js");    
 
 //Test for Register
 describe("/register", () => {
@@ -9,7 +9,16 @@ describe("/register", () => {
         .send({ username: "fnu", password: "bharti" });
         expect(response.status).toBe(201);
     })   
-}) 
+})  
+// for status code 500 
+describe("/register" , () => {
+    it("returns status 500" , async () => {
+        const response = await request(server) 
+        .post("api/auth/register")
+        .send({username: "abc" , password: "hello"})
+        expect(response.status).toBe(500);
+    })
+})
 // Test for Login
 describe("/Login" , () => {
     it("should return request status 200" , async () => {
@@ -18,8 +27,15 @@ describe("/Login" , () => {
         .send({ username: "fnu", password: "bharti" })
        expect(tstResult.status).toBe(200);
     })
-}) 
+})  
 
-describe("/GET" , () => {
+// for status code 500
+describe("/Login" , () => { 
+    it("returns status 500" , async() => {
+        const response = await request(server) 
+        .post("api/auth/login")
+        .send({username: "abc" , password: "hello"})
+        expect(response.status).toBe(500);
+    })
 
 })
