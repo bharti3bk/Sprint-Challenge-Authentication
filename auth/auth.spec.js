@@ -1,5 +1,6 @@
 const request = require("supertest");
 const server = require("../api/server.js");    
+const Users = require("../users/usersModel.js");
 
 //Test for Register
 describe("/register", () => {
@@ -38,4 +39,14 @@ describe("/Login" , () => {
         expect(response.status).toBe(500);
     })
 
+})  
+// Tests For users 
+describe("GET/" , () => {
+    it('returns 200 status', ()  => {
+        return request(server)
+        .get('/')
+        .then(res => {
+            expect(res.status).toBe(200);
+        })
+    })
 })
