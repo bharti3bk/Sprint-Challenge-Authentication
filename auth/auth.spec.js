@@ -40,7 +40,14 @@ describe("/Login" , () => {
     })
 
 })  
-// Tests For users 
+// Tests For GetEndpoint  
+describe("GET/" , () => {
+    it("should return {api : 'working'}") , async () => {
+      const res = await request(server).get('/');
+      expect(res.body.api).toBe('working');
+      expect(res.body).toEqual({api : 'working'});
+    }
+})
 describe("GET/" , () => {
     it('returns 200 status', ()  => {
         return request(server)
@@ -49,4 +56,5 @@ describe("GET/" , () => {
             expect(res.status).toBe(200);
         })
     })
-})
+}) 
+
